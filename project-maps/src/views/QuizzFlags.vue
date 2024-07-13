@@ -1,11 +1,18 @@
 <template>
-    <div class="quizz">
+    <!-- <div class="quizz">
       <h1>This is the quizz page</h1>
       <p>{{ filteredName }}</p>
-    </div>
+    </div> -->
+    
+    <CountryCard
+    v-for="country in filteredName"
+    :filteredCountry="country"
+    ></CountryCard>
+ 
   </template>
   <script>
   import {getNameCountryAndFlags} from "@/services/api/FlagsAPI.js"
+  import CountryCard from "./CountryCard.vue"
   export default {
     name: "QuizzFlags",
     data() {
@@ -13,7 +20,11 @@
       franceData: [],
         };
     },
-    mounted() {
+ 
+  components : {
+    CountryCard
+  },
+  created() {
     this.getFrance();
   },
     methods: {
@@ -33,10 +44,11 @@
     },
     computed: {
     filteredName() {
-        console.log(this.franceData, "this.franceDATa")
+      console.log(this.franceData)
         return this.franceData;
     },
     }
+ 
   };
 </script>
   
